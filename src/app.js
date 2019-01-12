@@ -1,12 +1,12 @@
 import '@tarojs/async-await'
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
-
 import Index from './pages/index'
-
-import configStore from './store'
-
 import './app.less'
+
+// import configStore from './store'
+import dvaApp from './util/dva'
+import models from './models'
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -14,7 +14,10 @@ import './app.less'
 //   require('nerv-devtools')
 // }
 
-const store = configStore()
+// const store = configStore()
+//由dva创建store
+const app=dvaApp.createApp({models})
+const store=app.getStore()
 
 class App extends Component {
 
