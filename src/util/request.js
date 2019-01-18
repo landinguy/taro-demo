@@ -1,19 +1,19 @@
 import Taro from '@tarojs/taro';
-import { baseUrl, noConsole } from '../config';
+import {baseUrl, noConsole} from '../config';
 
 const request_data = {
   platform: 'wap',
   rent_mode: 2,
 };
 
-export default (options = { method: 'GET', data: {} }) => {
+export default (options = {method: 'GET', data: {}}) => {
   if (!noConsole) {
     console.log(`${new Date().toLocaleString()}【 M=${options.url} 】P=${JSON.stringify(options.data)}`);
   }
   return Taro.request({
     url: baseUrl + options.url,
     data: {
-      ...request_data,
+      // ...request_data,
       ...options.data
     },
     header: {
@@ -21,11 +21,11 @@ export default (options = { method: 'GET', data: {} }) => {
     },
     method: options.method.toUpperCase(),
   }).then((res) => {
-    console.log("res:",res);
-    const { statusCode, data } = res;
+    console.log("res:", res);
+    const {statusCode, data} = res;
     if (statusCode >= 200 && statusCode < 300) {
       if (!noConsole) {
-        console.log(`${new Date().toLocaleString()}【 M=${options.url} 】【接口响应：】`,res.data);
+        console.log(`${new Date().toLocaleString()}【 M=${options.url} 】【接口响应：】`, res.data);
       }
       if (data.status !== 'ok') {
         Taro.showToast({

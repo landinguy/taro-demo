@@ -1,7 +1,7 @@
 import Request from '../../util/request';
 
-export const demo = data => Request({
-  url: '路径',
-  method: 'POST',
+export const getData = data => Request({
+  url: '/api/getData',
+  method: 'GET',
   data,
 });
